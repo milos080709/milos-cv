@@ -1,72 +1,110 @@
 <!DOCTYPE html>
 <html lang="sr">
 <head>
-  <meta charset="UTF-8">
-  <title>Moj CV</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miloš Đurić — CV</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      margin: 40px; 
-      background: #f4f6f9;
-    }
-    .wrap { 
-      max-width: 700px; 
-      margin: 0 auto; 
-      background: #fff;
-      padding: 20px; 
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .avatar { 
-      max-width: 180px;   /* slika nikada neće biti šira od 180px */
-      width: 100%;        /* prilagodiće se ako je manja */
-      border-radius: 50%; 
-      display:block; 
-      margin: 0 auto 16px; 
-    }
-    h1, .contact, .links { 
-      text-align: center; 
-    }
-    h1 { 
-      color: #2c3e50; 
-    }
-    .links a { 
-      margin: 0 10px; 
-      text-decoration: none; 
-      color: #2c3e50; 
-      font-weight: bold; 
-    }
-    .links a:hover { 
-      color: #3498db; 
+    :root { --ink:#2c3e50; --muted:#6b7280; --bg:#f4f6f9; --card:#ffffff; }
+    * { box-sizing:border-box; }
+    body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:#111; }
+    .container{ max-width:980px; margin:32px auto; padding:0 16px; }
+    .card{ background:var(--card); border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,.08); padding:24px; }
+    /* Hero */
+    .hero{ display:grid; grid-template-columns:180px 1fr; gap:24px; align-items:center; }
+    .avatar{ width:180px; max-width:180px; border-radius:50%; display:block; }
+    h1{ margin:0 0 6px; color:var(--ink); font-size:clamp(24px,3.2vw,36px); }
+    .subtitle{ margin:0 0 10px; color:var(--muted); }
+    .contacts a{ color:var(--ink); text-decoration:none; font-weight:600; margin-right:14px; }
+    .contacts a:hover{ text-decoration:underline; }
+    /* Sections */
+    h2{ color:var(--ink); margin:28px 0 12px; font-size:clamp(18px,2.6vw,24px); }
+    ul.clean{ list-style:none; padding:0; margin:0; }
+    ul.clean li{ padding-left:0; margin:6px 0; }
+    ul.check li::before{ content:"✔️ "; }
+    /* Projects */
+    .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .proj{ background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; }
+    .proj h3{ margin:0 0 6px; font-size:18px; color:var(--ink); }
+    .proj p{ margin:0 0 10px; color:#374151; font-size:14px; }
+    .proj a{ text-decoration:none; font-weight:600; color:var(--ink); }
+    .btns{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{ display:inline-block; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700; border:1px solid #e5e7eb; }
+    .btn.primary{ background:var(--ink); color:#fff; border-color:var(--ink); }
+    .center{ text-align:center; }
+    footer{ color:#6b7280; font-size:13px; text-align:center; margin-top:22px; }
+    /* Responsive */
+    @media (max-width:720px){
+      .hero{ grid-template-columns:1fr; text-align:center; }
+      .contacts{ justify-content:center; }
+      .grid{ grid-template-columns:1fr; }
+      .avatar{ margin:0 auto; }
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <img src="mojaslika.jpg" alt="Miloš Đurić" class="avatar">
+  <div class="container">
+    <!-- HERO -->
+    <section class="card hero">
+      <img src="mojaslika.jpg" alt="Miloš Đurić" class="avatar" />
+      <div>
+        <h1>Miloš Đurić</h1>
+        <p class="subtitle">Početnik web developmenta — fokus na HTML, CSS, JavaScript</p>
+        <div class="contacts">
+          <a href="mailto:example@email.com">📧 Email</a>
+          <a href="tel:+381600000000">📱 Telefon</a>
+          <a href="https://www.linkedin.com/in/milos-djuric1989" target="_blank">🔗 LinkedIn</a>
+          <a href="https://github.com/milos080709" target="_blank">💻 GitHub</a>
+        </div>
+        <div class="btns" style="margin-top:14px;">
+          <a class="btn primary" href="cv.pdf" target="_blank">⬇ Preuzmi CV (PDF)</a>
+          <a class="btn" href="#projekti">Pogledaj projekte</a>
+        </div>
+      </div>
+    </section>
 
-    <h1>Miloš Đurić</h1>
-    <p class="contact"><strong>Email:</strong> milos@example.com</p>
-    <p class="contact"><strong>Telefon:</strong> +381 64 123 456</p>
+    <!-- O MENI -->
+    <section class="card" style="margin-top:18px;">
+      <h2>O meni</h2>
+      <p>Motivisan sam da uđem u IT kroz web development. Trenutno gradim portfolio i učim moderni frontend stack.</p>
+    </section>
 
-    <h2>O meni</h2>
-    <p>Ja sam početnik u IT svetu i želim da postanem web developer.</p>
+    <!-- VEŠTINE -->
+    <section class="card" style="margin-top:18px;">
+      <h2>Veštine</h2>
+      <ul class="clean check">
+        <li>HTML – semantika, linkovi, liste, slike</li>
+        <li>CSS – raspored, tipografija, responsivnost (u toku)</li>
+        <li>JavaScript – osnove (u planu)</li>
+      </ul>
+    </section>
 
-    <h2>Veštine</h2>
-    <ul>
-      <li>HTML (učim 😊)</li>
-      <li>CSS (uskoro)</li>
-      <li>JavaScript (uskoro)</li>
-    </ul>
+    <!-- PROJEKTI -->
+    <section id="projekti" class="card" style="margin-top:18px;">
+      <h2>Projekti</h2>
+      <div class="grid">
+        <article class="proj">
+          <h3>CV Single-page</h3>
+          <p>Tvoja prva objavljena stranica na GitHub Pages (ovaj sajt).</p>
+          <a href="https://milos080709.github.io/milos-cv/" target="_blank">Otvori sajt →</a>
+        </article>
+        <article class="proj">
+          <h3>To-Do lista (uskoro)</h3>
+          <p>Plan: mala JS aplikacija za zadatke (dodaj/obriši/sačuvaj).</p>
+          <a href="#" onclick="return false;">Repo (uskoro)</a>
+        </article>
+        <article class="proj">
+          <h3>Galerija (uskoro)</h3>
+          <p>Plan: responzivna galerija slika sa CSS grid-om.</p>
+          <a href="#" onclick="return false;">Live (uskoro)</a>
+        </article>
+      </div>
+    </section>
 
-    <h2>Iskustvo</h2>
-    <p>Za sada pravim svoje prve projekte i vežbam svaki dan.</p>
-
-    <h2>Pronađi me</h2>
-    <p class="links">
-      <a href="https://www.linkedin.com/in/milos-djuric1989" target="_blank">🔗 LinkedIn</a> |
-      <a href="https://github.com/milos080709" target="_blank">💻 GitHub</a>
-    </p>
+    <footer>© <span id="y"></span> Miloš Đurić — Portfolio</footer>
   </div>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
+
